@@ -1,0 +1,65 @@
+<!-- product_management.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="product_management.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Product Management</h1>
+        <h2>Welcome <span id="loggedInUser"></span></h2>
+        <div class="product-container">
+           <button class="add_product_button" onclick="openAddProductModal()">
+    <i class="fas fa-plus"></i> Add Products
+</button>
+
+            <div id="product-list"></div>
+        </div>
+        
+        <div id="product-list">
+            <!-- Product table will be dynamically populated here -->
+        </div>
+       
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+            <h2>Add Product</h2>
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="text" id="productDescription" placeholder="Product Description">
+            <input type="number" id="productPrice" placeholder="Product Price">
+            <button onclick="addProduct()">Add</button>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditProductModal()">&times;</span>
+            <h2>Edit Product</h2>
+            <input type="text" id="editProductName" placeholder="Product Name">
+            <input type="text" id="editProductDescription" placeholder="Product Description">
+            <input type="number" id="editProductPrice" placeholder="Product Price">
+            <input type="hidden" id="editProductIndex">
+            <button onclick="updateProduct()">Update</button>
+        </div>
+    </div>
+
+    <script src="product_management.js"></script>
+    <script>
+        // Retrieve the logged-in username from local storage and display it
+        var loggedInUser = localStorage.getItem("loggedInUser");
+        if (loggedInUser) {
+            document.getElementById("loggedInUser").textContent = loggedInUser;
+        }
+    </script>
+</body>
+</html>

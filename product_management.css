@@ -137,9 +137,22 @@ button:hover {
     top: -80px;
     right: 0;
     margin: 10px;
-    width: 20%;
+    width: 25%;
+    font-weight: bolder;
 }
-
+.logout{
+    position: absolute;
+    top: -80px;
+    right: 10;
+    margin: 10px;
+    width: 20%;
+    background-color: red;
+    border: none;
+    width: 10%;
+}
+.logout:hover{
+    border: 2px solid red;
+}
 /* Add these styles to your existing CSS */
 
 /* Input fields */

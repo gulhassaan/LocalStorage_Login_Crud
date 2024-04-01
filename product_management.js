@@ -170,3 +170,13 @@ function saveEditedProduct() {
 
 // Initial function call to display products when the page loads
 displayProducts();
+
+
+// Add this function to your product_management.js file
+
+function logout() {
+    // Clear the logged-in user from local storage
+    localStorage.removeItem("loggedInUser");
+    console.log("Logged out successfully.");
+    window.location.href = "login.html";
+}

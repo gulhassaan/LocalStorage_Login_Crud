@@ -11,9 +11,15 @@ function signup(e){
         username: username,
         password: password
     };
-    
+
     var json = JSON.stringify(user);
     localStorage.setItem(username, json); // Store using username as the key
+    Swal.fire({
+        title: 'Scuuess',
+        text: 'Signup Successfully',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
     console.log("user's data")
 }
 
@@ -52,7 +58,7 @@ function login(e){
                 }).then((result) => {
                     if (result.isConfirmed) {
                         const username = "username"; // Assuming you have the username variable defined
-                        localStorage.setItem("loggedInUser", username); // Store logged-in username
+                        localStorage.setItem("loggedInUser", data.username); // Store logged-in username
                         Swal.fire({
                             title: 'Success!',
                             text: 'Logged In Successfully',

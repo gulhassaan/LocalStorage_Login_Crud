@@ -1,8 +1,5 @@
-// product_management.js
-var loggedInUser = localStorage.getItem("loggedInUser"); // Retrieve logged-in username
 
-// Retrieve products from local storage and display them
-// script.js
+var loggedInUser = localStorage.getItem("loggedInUser"); 
 
 function displayProducts() {
     var productList = JSON.parse(localStorage.getItem('products')) || [];
@@ -52,7 +49,7 @@ function addProduct() {
         description: productDescription,
         price: productPrice,
         
-        user: loggedInUser // Include logged-in username in product data
+        user: loggedInUser  // Include logged-in username in product data
     };
 
     var productList = JSON.parse(localStorage.getItem('products')) || [];

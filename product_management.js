@@ -65,11 +65,29 @@ function addProduct() {
 
 // Delete a product
 function deleteProduct(index) {
-    var productList = JSON.parse(localStorage.getItem('products')) || [];
-    productList.splice(index, 1);
-    localStorage.setItem('products', JSON.stringify(productList));
-    displayProducts();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete this product.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var productList = JSON.parse(localStorage.getItem('products')) || [];
+            productList.splice(index, 1);
+            localStorage.setItem('products', JSON.stringify(productList));
+            displayProducts();
+            Swal.fire(
+                'Deleted!',
+                'Product has been deleted.',
+                'success'
+            );
+        }
+    });
 }
+
 
 // Open Add Product Modal
 function openAddProductModal() {
@@ -174,9 +192,28 @@ displayProducts();
 
 // Add this function to your product_management.js file
 
+
 function logout() {
     // Clear the logged-in user from local storage
-    localStorage.removeItem("loggedInUser");
-    console.log("Logged out successfully.");
-    window.location.href = "login.html";
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will be logged out.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem("loggedInUser");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Logged Out Successfully',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = "login.html";
+            });
+        }
+    });
 }

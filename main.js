@@ -28,18 +28,52 @@ function login(e){
     
     if(user == null){
         result.innerHTML="Invalid username";
-        console.log("Invalid username");
+        Swal.fire({
+            title: 'Failed!',
+            text: 'Invalid username',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+          
     } else {
         var data = JSON.parse(user);
         console.log(data);
         if (username === data.username && password === data.password){
             result.innerHTML="Logged In Successfully";
-            console.log("Logged In Successfully")
-            localStorage.setItem("loggedInUser", username); // Store logged-in username
-            window.location.href = "index.html";
+           
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You will be logged in.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, login'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const username = "username"; // Assuming you have the username variable defined
+                        localStorage.setItem("loggedInUser", username); // Store logged-in username
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Logged In Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.href = "index.html";
+                        });
+                    }
+                });
+            
+            
         } else {
             result.innerHTML="Invalid Password";
             console.log("Invalid Password")
+            Swal.fire({
+                title: 'Failed!',
+                text: 'Invalid Password',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
         }
     }
 }

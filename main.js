@@ -11,7 +11,7 @@ function signup(e){
         username: username,
         password: password
     };
-
+    
     var json = JSON.stringify(user);
     localStorage.setItem(username, json); // Store using username as the key
     console.log("user's data")
@@ -40,7 +40,7 @@ function login(e){
         console.log(data);
         if (username === data.username && password === data.password){
             result.innerHTML="Logged In Successfully";
-           
+          
                 Swal.fire({
                     title: 'Are you sure?',
                     text: 'You will be logged in.',
@@ -63,8 +63,7 @@ function login(e){
                         });
                     }
                 });
-            
-            
+                    
         } else {
             result.innerHTML="Invalid Password";
             console.log("Invalid Password")

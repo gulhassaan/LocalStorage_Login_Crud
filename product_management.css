@@ -212,7 +212,7 @@ th {
     color: #fff;
     padding: 20px;
     border-radius: 10px;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     width: 100%;
 }

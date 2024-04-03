@@ -9,11 +9,11 @@
 }
 
 body {
-    background-color: black;
+    background-color: #19191D;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 70%;
     margin: 0 auto;
     padding: 20px;
 }
@@ -39,20 +39,23 @@ body {
     right: 50px;
     top: 0;
     margin: 10px auto;
-    width: 60%;
-    height: 100%;
+    width: 70%;
+    height: 100vh;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.144);
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5); /* Fallback color for older browsers */
+    backdrop-filter: blur(12px); /* Add blur effect */
+ 
 }
+
 
 .modal-content {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
-    width: 80%;
+    width: 60%;
     color: white !important;
+    background-color: black;
 }
 
 .close {
@@ -137,7 +140,7 @@ button:hover {
     top: -80px;
     right: 0;
     margin: 10px;
-    width: 25%;
+    width: 20%;
     font-weight: bolder;
 }
 .logout{
@@ -186,4 +189,110 @@ button:hover {
     background: rgb(88, 226, 254);
     color: black;
     font-weight: bolder;
+}
+
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    color: white;
+    text-align: center;
+}
+th {
+    background: rgb(0, 90, 108); 
+    color: white;
+    font-weight: bolder;
+} */
+#product-table-container {
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+#product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#product-table th {
+    background-color: #19191D;
+    padding: 15px;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+}
+
+/* #product-table th:last-child {
+    text-align: right;
+} */
+#product-table tr:hover td{
+    color: white;
+    transition: 0.3s ease-in-out;
+    background-color: #2E2E36;
+    cursor: pointer;
+}
+
+#product-table td {
+    padding: 15px;
+    border-bottom: 1px solid #555;
+    text-align: center;
+    background-color: #25252B;
+    border-bottom: 10px solid #19191D;
+    color: white;
+    padding: 40px;
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+}
+
+#product-table td:last-child {
+    text-align: center;
+}
+
+#product-table td:last-child .menu {
+    position: relative;
+    display: inline-block;
+}
+
+#product-table td:last-child .menu .dot {
+    cursor: pointer;
+}
+
+#product-table td:last-child .menu .dot::after {
+    content: '⋮';
+    font-size: 18px;
+}
+
+#product-table td:last-child .menu .options {
+    display: none;
+    position: absolute;
+    background-color: #19191D;
+    min-width: 100px;
+    right: 10;
+    top: -10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#product-table td:last-child .menu:hover .options {
+    display: block;
+}
+
+#product-table td:last-child .menu .option {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#product-table td:last-child .menu .option:hover {
+    background-color:  rgb(88, 226, 254);
+    color: black;
+}
+#product-table td .menu .option:hover:last-child {
+    background-color: red; 
 }

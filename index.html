@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="data.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management</title>
+    <title>Products Management</title>
     <link rel="stylesheet" href="product_management.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -17,14 +18,25 @@
         <h1>Product Management</h1>
         <h2>Welcome <span id="loggedInUser"></span></h2>
         <div class="product-container">
-           <button class="add_product_button" onclick="openAddProductModal()"><i class="fas fa-plus"></i> Add Products</button>
-           <button class="logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>  
-
-            <div id="product-list"></div>
+            <button class="add_product_button" onclick="productManager.openAddProductModal()"><i class="fas fa-plus"></i> Add </button>
+            <button class="logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>  
         </div>
         
-        <div id="product-list">
-            <!-- Product table will be dynamically populated here -->
+        <!-- Product table will be dynamically populated here -->
+        <div id="product-table-container">
+            <table id="product-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- Product data will be dynamically populated here -->
+                </tbody>
+            </table>
         </div>
     </div>
     
@@ -34,9 +46,9 @@
         <div class="modal-content">
             <span class="close" onclick="closeAddProductModal()">&times;</span>
             <h2>Add Product</h2>
-            <input type="text" id="productName" placeholder="Product Name">
-            <input type="text" id="productDescription" placeholder="Product Description">
-            <input type="number" id="productPrice" placeholder="Product Price">
+            <input type="text" id="productName" placeholder="Product Name" required>
+            <input type="text" id="productDescription" placeholder="Product Description" required>
+            <input type="number" id="productPrice" placeholder="Product Price" required>
             <button onclick="addProduct()">Add</button>
         </div>
     </div>

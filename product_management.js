@@ -1,10 +1,20 @@
+//Swirl.fire are mainly used for the alert message , I used cdn of sweetalert
+//To show these alert messages
+//Swirl.fire{}
+
 class Product {
-    constructor(name, description, price, user) {
+    constructor(name, description, price, user,status) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.user = user;
+        this.status=status;
     }
+}
+// Function to determine the status of a product based on some condition
+function determineStatus(name, description, price) {
+    // Example condition: If price is greater than $100, consider it online; otherwise, consider it offline
+    return parseFloat(price) > 100 ? "InStock" : "Out Of Stock";
 }
 
 class ProductManager {
@@ -21,11 +31,22 @@ class ProductManager {
 
         // Loop through each product in the list
         this.productList.forEach((product, index) => {
+    // Determine status class based on the product's status
+     // Determine status based on the product's status
+     const status = product.status;
+     const statusClass = status === 'InStock' ? 'status-in-stock' : 'status-out-of-stock';
+     const statusDotClass = status === 'InStock' ? 'dot-green' : 'dot-red';
+
             // Create HTML row for each product
             const row = `<tr>
+            
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
+                <td>
+                <span class="status-dot ${statusDotClass}"></span>
+                <span class="status-text ${statusClass}">${product.status}</span>
+            </td>
                 <td>
                     <div class="menu">
                         <div class="dot"></div>
@@ -41,9 +62,9 @@ class ProductManager {
         });
     }
 
-    addProduct(name, description, price, user) {
+    addProduct(name, description, price, user , status) {
         // Create a new product object
-        const newProduct = new Product(name, description, price, user);
+        const newProduct = new Product(name, description, price, user,status);
         // Add the new product to the list
         this.productList.push(newProduct);
         // Update the product list in local storage
@@ -153,25 +174,30 @@ class ProductManager {
         const editProductDescription = document.getElementById('editProductDescription').value;
         const editProductPrice = document.getElementById('editProductPrice').value;
         const editProductIndex = document.getElementById('editProductIndex').value;
-
-        const editedProduct = {
-            name: editProductName,
-            description: editProductDescription,
-            price: editProductPrice
-        };
-
-        this.productList[editProductIndex] = editedProduct;
+    
+        // Determine the status based on the updated price
+        const updatedStatus = determineStatus(editProductName, editProductDescription, editProductPrice);
+    
+        // Update the product's information
+        this.productList[editProductIndex].name = editProductName;
+        this.productList[editProductIndex].description = editProductDescription;
+        this.productList[editProductIndex].price = editProductPrice;
+        this.productList[editProductIndex].status = updatedStatus;
+    
+        // Update the product list in local storage
         localStorage.setItem('products', JSON.stringify(this.productList));
-
+    
+        // Refresh the displayed products
         this.displayProducts();
         this.closeEditProductModal();
-
+    
         Swal.fire(
             'Updated!',
             'Product has been updated.',
             'success'
         );
     }
+    
 }
 
 // Create an instance of ProductManager
@@ -189,7 +215,12 @@ function addProduct() {
     const productDescription = document.getElementById('productDescription').value.trim();
     const productPrice = document.getElementById('productPrice').value.trim();
     const loggedInUser = localStorage.getItem("loggedInUser");
+    // const status = "Online";
+   // Determine the status based on some condition
+   const status = determineStatus(productName, productDescription, productPrice); // Example: Call a function to determine status
 
+    // Debugging: Check the status value
+    console.log("Status:", status);
     // Check if any of the fields are empty
     if (productName === "" || productDescription === "" || productPrice === "") {
         // Display error message if any field is empty
@@ -201,8 +232,8 @@ function addProduct() {
         return; // Exit function if any field is empty
     }
 
-    // Add the product
-    productManager.addProduct(productName, productDescription, productPrice, loggedInUser);
+    productManager.addProduct(productName, productDescription, productPrice, loggedInUser, status);
+
 }
 
 // Event handler for opening the edit product modal

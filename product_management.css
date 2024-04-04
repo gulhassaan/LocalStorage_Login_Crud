@@ -15,7 +15,8 @@ body {
 .container {
     max-width: 70%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 10px;
+    transition: all 0.3s ease;
 }
 
 .product-row {
@@ -26,6 +27,7 @@ body {
     color: white;
     text-align: center;
     align-items: center;
+    transition: all 0.3s ease;
 }
 .product-row strong{
     font-size: 20px;
@@ -44,7 +46,7 @@ body {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5); /* Fallback color for older browsers */
     backdrop-filter: blur(12px); /* Add blur effect */
- 
+    transition: opacity 0.3s ease;
 }
 
 
@@ -246,7 +248,7 @@ th {
     text-align: center;
     background-color: #25252B;
     border-bottom: 10px solid #19191D;
-    color: white;
+    color: rgb(194, 194, 194);
     padding: 40px;
     text-transform: capitalize; /* Capitalize the first letter of each word */
 }
@@ -285,14 +287,85 @@ th {
 }
 
 #product-table td:last-child .menu .option {
-    padding: 8px 12px;
+    padding: 8px;
+    width: 40px;
     cursor: pointer;
+    background-color:  rgb(88, 226, 254); /* Default background color */
+    color: #fff; 
+    border-radius: 5px ; 
+    transition: background-color 0.3s ease; 
 }
 
 #product-table td:last-child .menu .option:hover {
-    background-color:  rgb(88, 226, 254);
-    color: black;
+    background-color: #2ecc71; 
 }
+
+#product-table td .menu .option {
+    transition: background-color 0.3s ease;
+}
+
 #product-table td .menu .option:hover:last-child {
-    background-color: red; 
+    background-color: #e74c3c; /* Background color for delete button */
+}
+
+
+#product-table td .menu .option i {
+    color: inherit; 
+}
+
+/* Optional: Add hover animation */
+#product-table td .menu .option:hover i {
+    transform: scale(1.2); 
+}
+
+
+
+/* Align status text and center it */
+#product-table th:nth-child(4),
+#product-table td:nth-child(4) {
+    text-align: center;
+}
+
+#product-table td:nth-child(4) {
+    text-transform: capitalize; /* Capitalize status text */
+}
+
+
+/* Status dot */
+/* Add these CSS classes to your existing CSS */
+
+/* Status Dot */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dot-green {
+    background-color: green; /* Green color for online status */
+}
+
+.dot-red {
+    background-color: red; /* Red color for offline status */
+}
+
+/* Status Text */
+.status-text {
+    color: rgb(231, 229, 229); /* Text color for status */
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+.status-text:hover{
+    color: white;
+    font-weight: bold;
+}
+
+.status-in-stock {
+    background-color: green; /* Background color for in stock status */
+}
+
+.status-out-of-stock {
+    background-color: red; /* Background color for out of stock status */
 }

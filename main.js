@@ -83,7 +83,7 @@ class Authentication {
                         // Store the logged-in user's username in local storage
                         localStorage.setItem("loggedInUser", data.username);
 
-                        // Show success message and redirect to index.html
+                        // Show success message and redirect to table.html
                         Swal.fire({
                             title: 'Success!',
                             text: 'Logged In Successfully',
@@ -91,7 +91,7 @@ class Authentication {
                             confirmButtonText: 'OK',
                             width: 'fit-content'
                         }).then(() => {
-                            window.location.href = "index.html";
+                            window.location.href = "table.html";
                         });
                     }
                 });
